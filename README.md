@@ -1,2 +1,5 @@
 # rag-server
- RAG pipline server
+ RAG pipeline server
+
+ # Setup
+ * to run the FastAPI server locally run: `uvicorn app.main:app --reload`
