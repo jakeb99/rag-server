@@ -1,5 +1,5 @@
 # rag-server
- RAG pipeline server
+PDF Document upload API. Embedds and stores uploaded pdf to vector DB. 
 
  # Setup
  * to run the FastAPI server locally run: `uvicorn app.main:app --reload`
