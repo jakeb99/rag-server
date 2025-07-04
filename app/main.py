@@ -6,5 +6,5 @@ app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/")
 async def root():
-    return {"message": "Hello, world!"}
+    return {"message": "Your rag backend server is up and running!"}
 

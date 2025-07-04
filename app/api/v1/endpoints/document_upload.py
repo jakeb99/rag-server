@@ -1,7 +1,7 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, HTTPException
 import fitz
 import app.services.documents.parser as parser
-import app.services.embedding.embedding_test as embedder
+import app.services.embedding.embedding as embedder
 import chromadb
 from chromadb.utils import embedding_functions
 
@@ -22,11 +22,8 @@ async def upload_file(file: UploadFile = File(...)):
     match file.content_type:
         case "application/pdf":
             text = await parser.parse_pdf(file)
-            # test = await parser.parse_pdf_docling(file)
-            # print( "fits: \n" + text + "\n")
-            # print("docling: \n" + test)
         case _:
-            text = 1
+            raise HTTPException(status_code=400, detail="Unsupported file type")
 
     # split text into chunks
     chunks = embedder.create_chunks_from_text(text)
